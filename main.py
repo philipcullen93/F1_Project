@@ -1,33 +1,20 @@
 from api.jolpica import get_current_drivers
+from services.driver_service import process_drivers
 import json
 
 def main():
-    print("Connecting to Jolpica API")
-    
+
+    print("Retrieving F1 drivers...")
+
     data = get_current_drivers()
 
-    print("Successfull Connection\n")
-    
-    print(json.dumps(data, indent=4))
+    drivers = process_drivers(data)
 
-if __name__ == "__main__":
-    main()
+    print("\nCurrent F1 Drivers")
+    print("------------------")
 
-from models.driver import Driver
-
-def main():
-
-    driver = Driver(
-        driver_id="max_verstappen",
-        first_name="Max",
-        last_name="Verstappen",
-        abbreviation="VER",
-        number=1,
-        nationality="Dutch",
-        date_of_birth="1997-09-30",
-    )
-
-    print(driver)
+    for driver in drivers:
+        print(driver)
 
 
 if __name__ == "__main__":
