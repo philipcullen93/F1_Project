@@ -22,6 +22,10 @@ class Driver:
         return f"{self.first_name} {self.last_name}"
     
     def __str__(self):
+
+        number = self.number if self.number else "-"
+        code = self.abbreviation if self.abbreviation else "---"
+        
         return (
             f"{self.number} | "
             f"{self.abbreviation} | "
