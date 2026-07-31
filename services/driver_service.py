@@ -31,3 +31,14 @@ def process_drivers(api_response):
         drivers.append(driver)
 
     return drivers
+
+def load_drivers(driver_data):
+    drivers = []
+
+    for data in driver_data:
+        drivers.append(
+            Driver.from_dict(data)
+        )
+
+    return drivers
+

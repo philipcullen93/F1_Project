@@ -1,29 +1,20 @@
 from api.jolpica import get_current_drivers
 from services.driver_service import process_drivers
 from services.data_service import save_json
-
+from services.data_service import load_json
+from services.driver_service import load_drivers
 
 def main():
 
-    print("Retrieving F1 drivers...")
+    driver_data = load_json("data/2026/drivers.json")
 
-    data = get_current_drivers()
+    drivers = load_drivers(driver_data)
 
-    drivers = process_drivers(data)
+    print("Drivers loaded from database")
+    print("----------------------------")
 
-    driver_data = [
-        driver.to_dict()
-        for driver in drivers
-    ]
-
-    save_json(
-        driver_data,
-        "data/2026/drivers.json"
-    )
-
-    print(
-        f"Saved {len(drivers)} drivers to database."
-    )
+    for driver in drivers:
+        print(driver)
 
 
 if __name__ == "__main__":

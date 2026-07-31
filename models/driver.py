@@ -49,4 +49,16 @@ class Driver:
             "date_of_birth": self.date_of_birth
         }
 
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            driver_id = data.get("driver_id"),
+            first_name = data.get("first_name"),
+            last_name = data.get("last_name"),
+            abbreviation = data.get("abbreviation"),
+            number = data.get("number"),
+            nationality = data.get("nationality"),
+            date_of_birth = data.get("date_of_birth"),
+        )
+
 
