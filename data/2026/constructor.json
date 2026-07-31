@@ -1,0 +1,68 @@
+[
+    {
+        "constructor_id": "alpine",
+        "name": "Alpine F1 Team",
+        "nationality": "French",
+        "url": "https://en.wikipedia.org/wiki/Alpine_F1_Team"
+    },
+    {
+        "constructor_id": "aston_martin",
+        "name": "Aston Martin",
+        "nationality": "British",
+        "url": "https://en.wikipedia.org/wiki/Aston_Martin_in_Formula_One"
+    },
+    {
+        "constructor_id": "audi",
+        "name": "Audi",
+        "nationality": "German",
+        "url": "https://en.wikipedia.org/wiki/Audi_in_Formula_One"
+    },
+    {
+        "constructor_id": "cadillac",
+        "name": "Cadillac F1 Team",
+        "nationality": "American",
+        "url": "https://en.wikipedia.org/wiki/Cadillac_in_Formula_One"
+    },
+    {
+        "constructor_id": "ferrari",
+        "name": "Ferrari",
+        "nationality": "Italian",
+        "url": "https://en.wikipedia.org/wiki/Scuderia_Ferrari"
+    },
+    {
+        "constructor_id": "haas",
+        "name": "Haas F1 Team",
+        "nationality": "American",
+        "url": "https://en.wikipedia.org/wiki/Haas_F1_Team"
+    },
+    {
+        "constructor_id": "mclaren",
+        "name": "McLaren",
+        "nationality": "British",
+        "url": "https://en.wikipedia.org/wiki/McLaren"
+    },
+    {
+        "constructor_id": "mercedes",
+        "name": "Mercedes",
+        "nationality": "German",
+        "url": "https://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One"
+    },
+    {
+        "constructor_id": "rb",
+        "name": "RB F1 Team",
+        "nationality": "Italian",
+        "url": "https://en.wikipedia.org/wiki/Racing_Bulls"
+    },
+    {
+        "constructor_id": "red_bull",
+        "name": "Red Bull",
+        "nationality": "Austrian",
+        "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing"
+    },
+    {
+        "constructor_id": "williams",
+        "name": "Williams",
+        "nationality": "British",
+        "url": "https://en.wikipedia.org/wiki/Williams_Racing"
+    }
+]

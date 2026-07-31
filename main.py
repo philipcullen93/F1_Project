@@ -1,21 +1,9 @@
 from api.jolpica import get_current_drivers
+from api.jolpica import get_current_constructors
 from services.driver_service import process_drivers, load_drivers
 from services.data_service import save_json, load_json
+from services.constructors_service import process_constructors
 from models.constructor import Constructor
-
-def test_constructor():
-
-    constructor = Constructor(
-        "red_bull",
-        "Red Bull Racing",
-        "Austrian"
-    )
-
-    print(constructor)
-
-
-if __name__ == "__main__":
-    test_constructor()
 
 def import_drivers():
 
@@ -39,6 +27,44 @@ def list_drivers():
 
     for driver in drivers:
         print(driver)
+
+def import_constructors():
+
+    print("\nImporting Constructors")
+
+    data = get_current_constructors()
+    constructors = process_constructors(data)
+
+    constructor_data = [
+        constructor.to_dict()
+        for constructor in constructors
+    ]
+
+    save_json(
+        constructor_data,
+        "data/2026/constructor.json"
+    )
+
+    print(
+        f"{len(constructors)} constructors imported successfully"
+    )
+
+def list_constructors():
+
+    print("\nCurrent Constructors")
+    print("------------------------")
+
+    constructor_data = load_json(
+        "data/2026/constructor.json"
+    )
+
+    constructors = [
+        Constructor.from_dict(data)
+        for data in constructor_data
+    ]
+
+    for constructor in constructors:
+        print(constructor)
 
 def main():
 
