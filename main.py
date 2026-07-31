@@ -1,9 +1,12 @@
 from api.jolpica import get_current_drivers
 from api.jolpica import get_current_constructors
+from api.jolpica import get_current_circuits
 from services.driver_service import process_drivers, load_drivers
 from services.data_service import save_json, load_json
 from services.constructors_service import process_constructors
+from services.circuits_services import process_circuits
 from models.constructor import Constructor
+from models.circuits import Circuits
 
 def import_drivers():
 
@@ -66,6 +69,44 @@ def list_constructors():
     for constructor in constructors:
         print(constructor)
 
+def import_circuits():
+
+    print("\nImporting Circuits")
+
+    data = get_current_circuits()
+    circuits = process_circuits(data)
+
+    circuit_data = [
+        circuit.to_dict()
+        for circuit in circuits
+    ]
+
+    save_json(
+        circuit_data,
+        "data/2026/circuits.json"
+    )
+    
+    print(
+        f"{len(circuits)} circuits imported successfully"
+    )
+
+def list_circuits():
+
+    print("\nCurrent Circuits")
+    print("-------------------------")
+
+    circuit_data = load_json(
+        "data/2026/circuits.json"
+    )
+
+    circuits = [
+        Circuits.from_dict(data)
+        for data in circuit_data
+    ]
+
+    for circuit in circuits:
+        print(circuit)
+
 def main():
 
     while True:
@@ -77,6 +118,8 @@ def main():
         print("2. List Drivers")
         print("3. Import Constructors")
         print("4. List Constructors")
+        print("5. Import Circuits")
+        print("6. List Circuits")
         print("0. Exit")
 
         choice = input("\nSelect an Option:")
@@ -92,6 +135,12 @@ def main():
 
         elif choice == "4":
             list_constructors()
+
+        elif choice == "5":
+            import_circuits()
+
+        elif choice == "6":
+            list_circuits()
 
         elif choice == "0":
             print("\nGoodbye")

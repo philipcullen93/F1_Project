@@ -16,3 +16,10 @@ def get_current_constructors():
     response = requests.get(url)
     response.raise_for_status()
     return response.json()
+
+def get_current_circuits():
+    url = f"{BASE_URL}/current/circuits.json"
+
+    response = requests.get(url)
+    response.raise_for_status()
+    return response.json()
