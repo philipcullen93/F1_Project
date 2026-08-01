@@ -22,6 +22,7 @@ Data is retrieved from the Jolpica F1 API, processed into Python objects, and st
 
 ## Project Structure
 
+'''
 F1_Project/
 
 ├── api/
@@ -46,7 +47,7 @@ F1_Project/
 ├── config.py
 ├── main.py
 └── README.md
-
+'''
 
 ---
 
