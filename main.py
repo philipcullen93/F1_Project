@@ -1,12 +1,42 @@
-from api.jolpica import get_current_drivers
-from api.jolpica import get_current_constructors
-from api.jolpica import get_current_circuits
-from services.driver_service import process_drivers, load_drivers
-from services.data_service import save_json, load_json
-from services.constructors_service import process_constructors
-from services.circuits_services import process_circuits
-from models.constructor import Constructor
-from models.circuits import Circuits
+# F1 Data Platform
+
+
+# ==========================
+# Imports
+# ==========================
+
+from api.jolpica import (
+    get_current_drivers,
+    get_current_constructors,
+    get_current_circuits
+)
+from services.driver_service import (
+    process_drivers, 
+    load_drivers
+)
+from services.data_service import (
+    save_json, 
+    load_json
+)
+from services.constructors_service import (
+    process_constructors
+)
+from services.circuits_services import (
+    process_circuits
+)
+from models.constructor import (
+    Constructor
+)
+from models.circuits import (
+    Circuits
+)
+from config import (
+    DATA_FOLDER
+)
+
+# ==========================
+# Driver Functions
+# ==========================
 
 def import_drivers():
 
@@ -17,7 +47,7 @@ def import_drivers():
 
     driver_data = [driver.to_dict() for driver in drivers]
 
-    save_json(driver_data, "data/2026/drivers.json")
+    save_json(driver_data, f"{DATA_FOLDER}/drivers.json")
     print(f"{len(drivers)} drivers imported successfully")
 
 def list_drivers():
@@ -25,11 +55,15 @@ def list_drivers():
     print("\nCurrent Drivers")
     print("-----------")
 
-    driver_data = load_json("data/2026/drivers.json")
+    driver_data = load_json(f"{DATA_FOLDER}/drivers.json")
     drivers = load_drivers(driver_data)
 
     for driver in drivers:
         print(driver)
+
+# ==========================
+# Constructor Functions
+# ==========================
 
 def import_constructors():
 
@@ -45,7 +79,7 @@ def import_constructors():
 
     save_json(
         constructor_data,
-        "data/2026/constructor.json"
+        f"{DATA_FOLDER}/constructors.json"
     )
 
     print(
@@ -58,7 +92,7 @@ def list_constructors():
     print("------------------------")
 
     constructor_data = load_json(
-        "data/2026/constructor.json"
+        f"{DATA_FOLDER}/constructors.json"
     )
 
     constructors = [
@@ -68,6 +102,10 @@ def list_constructors():
 
     for constructor in constructors:
         print(constructor)
+
+# ==========================
+# Circuit Functions
+# ==========================
 
 def import_circuits():
 
@@ -83,7 +121,7 @@ def import_circuits():
 
     save_json(
         circuit_data,
-        "data/2026/circuits.json"
+        f"{DATA_FOLDER}/circuits.json"
     )
     
     print(
@@ -96,7 +134,7 @@ def list_circuits():
     print("-------------------------")
 
     circuit_data = load_json(
-        "data/2026/circuits.json"
+        f"{DATA_FOLDER}/circuits.json"
     )
 
     circuits = [
@@ -107,20 +145,31 @@ def list_circuits():
     for circuit in circuits:
         print(circuit)
 
+# ==========================
+# Main Menu
+# ==========================
+def display_menu():
+
+    print("\n=========================")
+    print("F1 Data Management")
+    print("=========================")
+    print("1. Import Drivers")
+    print("2. List Drivers")
+    print("3. Import Constructors")
+    print("4. List Constructors")
+    print("5. Import Circuits")
+    print("6. List Circuits")
+    print("0. Exit")
+
+# ==========================
+# Main Menu Program
+# ==========================
+
 def main():
 
     while True:
 
-        print("\n=========================")
-        print("F1 Data Management")
-        print("=========================")
-        print("1. Import Drivers")
-        print("2. List Drivers")
-        print("3. Import Constructors")
-        print("4. List Constructors")
-        print("5. Import Circuits")
-        print("6. List Circuits")
-        print("0. Exit")
+        display_menu()
 
         choice = input("\nSelect an Option:")
 
