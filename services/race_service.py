@@ -15,14 +15,14 @@ def process_races(api_response):
         circuit = race_data["Circuit"]
 
         race = Race(
-            season=race_data.get("season"),
-            round=int(race_data.get("round")),
-            raceName=race_data.get("raceName"),
-            date=race_data.get("date"),
-            time=race_data.get("time"),
-            circuit_id=circuit.get("circuitId"),
-            circuit_name=circuit.get("circuitName"),
-            url=race_data.get("url")
+            season = race_data.get("season"),
+            round = int(race_data.get("round")),
+            raceName = race_data.get("raceName"),
+            date = race_data.get("date"),
+            time = race_data.get("time"),
+            circuit_id = circuit.get("circuitId"),
+            circuit_name = circuit.get("circuitName"),
+            url = race_data.get("url")
         )
 
         races.append(race)

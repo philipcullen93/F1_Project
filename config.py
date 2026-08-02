@@ -1,3 +1,11 @@
-CURRENT_SEASON = "2026"
+CURRENT_SEASON = None
 
-DATA_FOLDER = f"data/{CURRENT_SEASON}"
+def set_current_season(season):
+
+    global CURRENT_SEASON
+
+    CURRENT_SEASON = season
+
+def get_data_folder():
+
+    return f"data/{CURRENT_SEASON}"

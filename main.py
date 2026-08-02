@@ -39,8 +39,38 @@ from models.race import(
     Race
 )
 from config import (
-    DATA_FOLDER
+    set_current_season,
+    get_data_folder
 )
+
+# ==========================
+# Season Selection
+# ==========================
+
+def select_season():
+
+    print("\nPlease Select a Season")
+    print("-------------------------")
+    print("1. 2026")
+    print("2. 2027")
+    print("0. Exit")
+
+    choice = input("\n Select Season:")
+
+    if choice == "1":
+        set_current_season("2026")
+        return True
+
+    elif choice == "2":
+        set_current_season("2027")
+        return True
+
+    elif choice == "0":
+        return False
+
+    else:
+        print("Invalid Option")
+        return False
 
 # ==========================
 # Driver Functions
@@ -55,7 +85,7 @@ def import_drivers():
 
     driver_data = [driver.to_dict() for driver in drivers]
 
-    save_json(driver_data, f"{DATA_FOLDER}/drivers.json")
+    save_json(driver_data, f"{get_data_folder()}/drivers.json")
     print(f"{len(drivers)} drivers imported successfully")
 
 def list_drivers():
@@ -63,7 +93,7 @@ def list_drivers():
     print("\nCurrent Drivers")
     print("-----------")
 
-    driver_data = load_json(f"{DATA_FOLDER}/drivers.json")
+    driver_data = load_json(f"{get_data_folder()}/drivers.json")
     drivers = load_drivers(driver_data)
 
     for driver in drivers:
@@ -87,7 +117,7 @@ def import_constructors():
 
     save_json(
         constructor_data,
-        f"{DATA_FOLDER}/constructors.json"
+        f"{get_data_folder()}/constructors.json"
     )
 
     print(
@@ -100,7 +130,7 @@ def list_constructors():
     print("------------------------")
 
     constructor_data = load_json(
-        f"{DATA_FOLDER}/constructors.json"
+        f"{get_data_folder()}/constructors.json"
     )
 
     constructors = [
@@ -129,7 +159,7 @@ def import_circuits():
 
     save_json(
         circuit_data,
-        f"{DATA_FOLDER}/circuits.json"
+        f"{get_data_folder()}/circuits.json"
     )
     
     print(
@@ -142,7 +172,7 @@ def list_circuits():
     print("-------------------------")
 
     circuit_data = load_json(
-        f"{DATA_FOLDER}/circuits.json"
+        f"{get_data_folder()}/circuits.json"
     )
 
     circuits = [
@@ -171,7 +201,7 @@ def import_races():
 
     save_json(
         race_data,
-        f"{DATA_FOLDER}/races.json"
+        f"{get_data_folder()}/races.json"
     )
 
     print(
@@ -183,7 +213,7 @@ def list_races():
     print("-------------------------")
 
     race_data = load_json(
-        f"{DATA_FOLDER}/races.json"
+        f"{get_data_folder()}/races.json"
     )
 
     races = load_races(race_data)
@@ -214,6 +244,10 @@ def display_menu():
 # ==========================
 
 def main():
+
+    if not select_season():
+        print("Goodbye")
+        return
 
     while True:
 
