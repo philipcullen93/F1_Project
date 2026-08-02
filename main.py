@@ -40,7 +40,8 @@ from models.race import(
 )
 from config import (
     set_current_season,
-    get_data_folder
+    get_data_folder,
+    season_has_data
 )
 
 # ==========================
@@ -49,28 +50,33 @@ from config import (
 
 def select_season():
 
-    print("\nPlease Select a Season")
-    print("-------------------------")
-    print("1. 2026")
-    print("2. 2027")
-    print("0. Exit")
+    while True:
 
-    choice = input("\n Select Season:")
+        print("\nPlease Select a Season")
+        print("-------------------------")
+        print("1. 2026")
+        print("2. 2027")
+        print("0. Exit")
 
-    if choice == "1":
-        set_current_season("2026")
-        return True
+        choice = input("\n Select Season:")
 
-    elif choice == "2":
-        set_current_season("2027")
-        return True
+        if choice == "1":
+            set_current_season("2026")
 
-    elif choice == "0":
-        return False
+        elif choice == "2":
+            set_current_season("2027")
 
-    else:
-        print("Invalid Option")
-        return False
+        elif choice == "0":
+            return False
+
+        else:
+            print("Invalid Option")
+            continue
+
+        if season_has_data():
+            return True
+        print("\nNo current data available for this season")
+        print("Please select another season")
 
 # ==========================
 # Driver Functions
