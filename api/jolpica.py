@@ -23,3 +23,9 @@ def get_current_circuits():
     return make_request(
         "current/circuits.json"
     )
+
+def get_current_schedule():
+
+    return make_request(
+        "current.json"
+    )

@@ -8,7 +8,8 @@
 from api.jolpica import (
     get_current_drivers,
     get_current_constructors,
-    get_current_circuits
+    get_current_circuits,
+    get_current_schedule
 )
 from services.driver_service import (
     process_drivers, 
@@ -29,6 +30,13 @@ from models.constructor import (
 )
 from models.circuits import (
     Circuits
+)
+from services.race_service import (
+    process_races,
+    load_races
+)
+from models.race import(
+    Race
 )
 from config import (
     DATA_FOLDER
@@ -146,6 +154,44 @@ def list_circuits():
         print(circuit)
 
 # ==========================
+# Race Functions
+# ==========================
+
+def import_races():
+
+    print("\nImporting Race Calender")
+
+    data = get_current_schedule()
+    races = process_races(data)
+
+    race_data = [
+        race.to_dict()
+        for race in races
+    ]
+
+    save_json(
+        race_data,
+        f"{DATA_FOLDER}/races.json"
+    )
+
+    print(
+        f"{len(races)} races imported successfully")
+
+def list_races():
+
+    print("\nCurrent Race Calender")
+    print("-------------------------")
+
+    race_data = load_json(
+        f"{DATA_FOLDER}/races.json"
+    )
+
+    races = load_races(race_data)
+
+    for race in races:
+        print(race)
+
+# ==========================
 # Main Menu
 # ==========================
 def display_menu():
@@ -159,6 +205,8 @@ def display_menu():
     print("4. List Constructors")
     print("5. Import Circuits")
     print("6. List Circuits")
+    print("7. Import Race Calender")
+    print("8. List Race Calender")
     print("0. Exit")
 
 # ==========================
@@ -190,6 +238,12 @@ def main():
 
         elif choice == "6":
             list_circuits()
+
+        elif choice == "7":
+           import_races()
+
+        elif choice == "8":
+            list_races()
 
         elif choice == "0":
             print("\nGoodbye")

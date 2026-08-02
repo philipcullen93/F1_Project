@@ -1,0 +1,232 @@
+[
+    {
+        "season": "2026",
+        "round": 1,
+        "raceName": "Australian Grand Prix",
+        "date": "2026-03-08",
+        "time": "04:00:00Z",
+        "circuit_id": "albert_park",
+        "circuit_name": "Albert Park Grand Prix Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_Australian_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 2,
+        "raceName": "Chinese Grand Prix",
+        "date": "2026-03-15",
+        "time": "07:00:00Z",
+        "circuit_id": "shanghai",
+        "circuit_name": "Shanghai International Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_Chinese_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 3,
+        "raceName": "Japanese Grand Prix",
+        "date": "2026-03-29",
+        "time": "05:00:00Z",
+        "circuit_id": "suzuka",
+        "circuit_name": "Suzuka Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_Japanese_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 4,
+        "raceName": "Miami Grand Prix",
+        "date": "2026-05-03",
+        "time": "20:00:00Z",
+        "circuit_id": "miami",
+        "circuit_name": "Miami International Autodrome",
+        "url": "https://en.wikipedia.org/wiki/2026_Miami_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 5,
+        "raceName": "Canadian Grand Prix",
+        "date": "2026-05-24",
+        "time": "20:00:00Z",
+        "circuit_id": "villeneuve",
+        "circuit_name": "Circuit Gilles Villeneuve",
+        "url": "https://en.wikipedia.org/wiki/2026_Canadian_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 6,
+        "raceName": "Monaco Grand Prix",
+        "date": "2026-06-07",
+        "time": "13:00:00Z",
+        "circuit_id": "monaco",
+        "circuit_name": "Circuit de Monaco",
+        "url": "https://en.wikipedia.org/wiki/2026_Monaco_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 7,
+        "raceName": "Barcelona Grand Prix",
+        "date": "2026-06-14",
+        "time": "13:00:00Z",
+        "circuit_id": "catalunya",
+        "circuit_name": "Circuit de Barcelona-Catalunya",
+        "url": "https://en.wikipedia.org/wiki/2026_Barcelona-Catalunya"
+    },
+    {
+        "season": "2026",
+        "round": 8,
+        "raceName": "Austrian Grand Prix",
+        "date": "2026-06-28",
+        "time": "13:00:00Z",
+        "circuit_id": "red_bull_ring",
+        "circuit_name": "Red Bull Ring",
+        "url": "https://en.wikipedia.org/wiki/2026_Austrian_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 9,
+        "raceName": "British Grand Prix",
+        "date": "2026-07-05",
+        "time": "14:00:00Z",
+        "circuit_id": "silverstone",
+        "circuit_name": "Silverstone Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_British_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 10,
+        "raceName": "Belgian Grand Prix",
+        "date": "2026-07-19",
+        "time": "13:00:00Z",
+        "circuit_id": "spa",
+        "circuit_name": "Circuit de Spa-Francorchamps",
+        "url": "https://en.wikipedia.org/wiki/2026_Belgian_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 11,
+        "raceName": "Hungarian Grand Prix",
+        "date": "2026-07-26",
+        "time": "13:00:00Z",
+        "circuit_id": "hungaroring",
+        "circuit_name": "Hungaroring",
+        "url": "https://en.wikipedia.org/wiki/2026_Hungarian_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 12,
+        "raceName": "Dutch Grand Prix",
+        "date": "2026-08-23",
+        "time": "13:00:00Z",
+        "circuit_id": "zandvoort",
+        "circuit_name": "Circuit Park Zandvoort",
+        "url": "https://en.wikipedia.org/wiki/2026_Dutch_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 13,
+        "raceName": "Italian Grand Prix",
+        "date": "2026-09-06",
+        "time": "13:00:00Z",
+        "circuit_id": "monza",
+        "circuit_name": "Autodromo Nazionale di Monza",
+        "url": "https://en.wikipedia.org/wiki/2026_Italian_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 14,
+        "raceName": "Spanish Grand Prix",
+        "date": "2026-09-13",
+        "time": "13:00:00Z",
+        "circuit_id": "madring",
+        "circuit_name": "Madring",
+        "url": "https://en.wikipedia.org/wiki/2026_Spanish_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 15,
+        "raceName": "Azerbaijan Grand Prix",
+        "date": "2026-09-26",
+        "time": "11:00:00Z",
+        "circuit_id": "baku",
+        "circuit_name": "Baku City Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_Azerbaijan_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 16,
+        "raceName": "Bahrain Grand Prix in Malaysia",
+        "date": "2026-10-04",
+        "time": "07:00:00Z",
+        "circuit_id": "sepang",
+        "circuit_name": "Sepang International Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_Bahrain_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 17,
+        "raceName": "Singapore Grand Prix",
+        "date": "2026-10-11",
+        "time": "12:00:00Z",
+        "circuit_id": "marina_bay",
+        "circuit_name": "Marina Bay Street Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_Singapore_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 18,
+        "raceName": "United States Grand Prix",
+        "date": "2026-10-25",
+        "time": "20:00:00Z",
+        "circuit_id": "americas",
+        "circuit_name": "Circuit of the Americas",
+        "url": "https://en.wikipedia.org/wiki/2026_United_States_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 19,
+        "raceName": "Mexico City Grand Prix",
+        "date": "2026-11-01",
+        "time": "20:00:00Z",
+        "circuit_id": "rodriguez",
+        "circuit_name": "Autódromo Hermanos Rodríguez",
+        "url": "https://en.wikipedia.org/wiki/2026_Mexico_City_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 20,
+        "raceName": "Brazilian Grand Prix",
+        "date": "2026-11-08",
+        "time": "17:00:00Z",
+        "circuit_id": "interlagos",
+        "circuit_name": "Autódromo José Carlos Pace",
+        "url": "https://en.wikipedia.org/wiki/2026_Brazilian_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 21,
+        "raceName": "Las Vegas Grand Prix",
+        "date": "2026-11-22",
+        "time": "04:00:00Z",
+        "circuit_id": "vegas",
+        "circuit_name": "Las Vegas Strip Street Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_Las_Vegas_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 22,
+        "raceName": "Qatar Grand Prix",
+        "date": "2026-11-29",
+        "time": "16:00:00Z",
+        "circuit_id": "losail",
+        "circuit_name": "Losail International Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_Qatar_Grand_Prix"
+    },
+    {
+        "season": "2026",
+        "round": 23,
+        "raceName": "Abu Dhabi Grand Prix",
+        "date": "2026-12-06",
+        "time": "13:00:00Z",
+        "circuit_id": "yas_marina",
+        "circuit_name": "Yas Marina Circuit",
+        "url": "https://en.wikipedia.org/wiki/2026_Abu_Dhabi_Grand_Prix"
+    }
+]
