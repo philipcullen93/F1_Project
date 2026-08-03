@@ -25,6 +25,9 @@ from services.constructors_service import (
 from services.circuits_services import (
     process_circuits
 )
+from services.season_service import (
+    get_available_seasons
+)
 from models.constructor import (
     Constructor
 )
@@ -54,20 +57,27 @@ def select_season():
 
         print("\nPlease Select a Season")
         print("-------------------------")
-        print("1. 2026")
-        print("2. 2027")
+        seasons = get_available_seasons()
+        for index, season in enumerate(seasons, start = 1):
+            print(f"{index}. {season}")
         print("0. Exit")
 
         choice = input("\n Select Season:")
 
-        if choice == "1":
-            set_current_season("2026")
-
-        elif choice == "2":
-            set_current_season("2027")
-
-        elif choice == "0":
+        if choice == "0":
             return False
+
+        if choice.isdigit():
+            selection = int(choice)
+
+            if 1 <= selection <= len(seasons):
+                set_current_season(
+                    seasons[selection - 1]
+                )
+
+            else:
+                print("Invalid Season")
+                continue
 
         else:
             print("Invalid Option")
