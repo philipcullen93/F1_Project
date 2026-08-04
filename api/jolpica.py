@@ -35,8 +35,15 @@ def get_driver_standings(season):
     return make_request(
         f"{season}/driverStandings.json"
     )
+
 def get_constructor_standings(season):
 
     return make_request(
         f"{season}/constructorStandings.json"
+    )
+
+def get_race_results(season, round):
+
+    return make_request(
+        f"{season}/{round}/results.json"
     )
