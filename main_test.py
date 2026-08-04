@@ -1,8 +1,9 @@
+from api.jolpica import get_driver_standings
+from services.driver_standing_service import process_driver_standings
 
+data = get_driver_standings("2026")
 
-data = get_current_schedule()
+standings = process_driver_standings(data)
 
-races = process_races(data)
-
-for race in races:
-    print(race)
+for standing in standings:
+    print(standing)

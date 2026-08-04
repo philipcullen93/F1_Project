@@ -44,12 +44,17 @@ from services.race_service import (
 from models.race import(
     Race
 )
+from models.driver_standing import(
+    DriverStanding
+)
+from services.driver_standing_service import(
+    process_driver_standings
+)
 from config import (
     set_current_season,
     get_data_folder,
     season_has_data
 )
-
 
 # ==========================
 # Season Selection
@@ -242,6 +247,47 @@ def list_races():
         print(race)
 
 # ==========================
+# Driver Standings
+# ==========================
+
+def import_driver_standings():
+
+    print("\nImporting Driver Standings")
+
+    data = get_driver_standings("2026")
+    standings = process_driver_standings(data)
+
+    driver_standings_data = [
+        standing.to_dict()
+        for standing in standings
+    ]
+
+    save_json(
+        driver_standings_data,
+        f"{get_data_folder()}/driver_standings.json"
+    )
+
+    print(
+            f"{len(standings)} driver standings imported successfully")
+
+def list_driver_standings():
+
+    print("\nCurrent Driver Standings")
+    print("-------------------------")
+
+    standing_data = load_json(
+        f"{get_data_folder()}/driver_standings.json"
+    )
+
+    standings = [
+        DriverStanding.from_dict(data)
+        for data in standing_data
+    ]
+
+    for standing in standings:
+        print(standing)
+
+# ==========================
 # Main Menu
 # ==========================
 def display_menu():
@@ -257,6 +303,8 @@ def display_menu():
     print("6. List Circuits")
     print("7. Import Race Calender")
     print("8. List Race Calender")
+    print("9. Import Driver Standings")
+    print("10. List Driver Standings")
     print("0. Exit")
 
 # ==========================
@@ -298,6 +346,12 @@ def main():
 
         elif choice == "8":
             list_races()
+
+        elif choice == "9":
+            import_driver_standings()
+
+        elif choice == "10":
+            list_driver_standings()
 
         elif choice == "0":
             print("\nGoodbye")
