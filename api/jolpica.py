@@ -35,3 +35,8 @@ def get_driver_standings(season):
     return make_request(
         f"{season}/driverStandings.json"
     )
+def get_constructor_standings(season):
+
+    return make_request(
+        f"{season}/constructorStandings.json"
+    )

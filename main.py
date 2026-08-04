@@ -10,7 +10,8 @@ from api.jolpica import (
     get_current_constructors,
     get_current_circuits,
     get_current_schedule,
-    get_driver_standings
+    get_driver_standings,
+    get_constructor_standings
 )
 from services.driver_service import (
     process_drivers, 
@@ -49,6 +50,12 @@ from models.driver_standing import(
 )
 from services.driver_standing_service import(
     process_driver_standings
+)
+from models.constructor_standing import(
+    ConstructorStanding
+)
+from services.constructor_standing_service import(
+    process_constructor_standing
 )
 from config import (
     set_current_season,
@@ -288,6 +295,48 @@ def list_driver_standings():
         print(standing)
 
 # ==========================
+# Constructor Standings
+# ==========================
+
+def import_constructor_standings():
+
+    print("\nImporting Constructor Standings")
+
+    data = get_constructor_standings("2026")
+    standings = process_constructor_standing(data)
+
+    constructor_standings_data = [
+        standing.to_dict()
+        for standing in standings
+    ]
+
+    save_json(
+        constructor_standings_data,
+        f"{get_data_folder()}/constructor_standings.json"
+    )
+
+    print(
+        f"{len(standings)} constructor standings imported successfully "
+    )
+
+def list_constructor_standings():
+
+    print("\nCurrent Constructor Standings")
+    print("-------------------------")
+
+    standing_data = load_json(
+        f"{get_data_folder()}/constructor_standings.json"
+    )
+
+    standings = [
+        ConstructorStanding.from_dict(data)
+        for data in standing_data
+    ]
+
+    for standing in standings:
+        print(standing)
+
+# ==========================
 # Main Menu
 # ==========================
 def display_menu():
@@ -305,6 +354,8 @@ def display_menu():
     print("8. List Race Calender")
     print("9. Import Driver Standings")
     print("10. List Driver Standings")
+    print("11. Import Constructor Standings")
+    print("12. List Constructor Standings")
     print("0. Exit")
 
 # ==========================
@@ -352,6 +403,12 @@ def main():
 
         elif choice == "10":
             list_driver_standings()
+
+        elif choice == "11":
+            import_constructor_standings()
+
+        elif choice == "12":
+            list_constructor_standings()
 
         elif choice == "0":
             print("\nGoodbye")
