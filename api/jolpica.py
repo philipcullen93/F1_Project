@@ -1,11 +1,21 @@
 import requests
+import time
 
 BASE_URL = "https://api.jolpi.ca/ergast/f1"
 
 def make_request(endpoint):
+
     url = f"{BASE_URL}/{endpoint}"
+
     response = requests.get(url)
+
+    if response.status_code == 429:
+        print("Rate limit reached. Waiting...")
+        time.sleep(5)
+        response = requests.get(url)
+
     response.raise_for_status()
+
     return response.json()
 
 def get_current_drivers():
@@ -46,4 +56,10 @@ def get_race_results(season, round):
 
     return make_request(
         f"{season}/{round}/results.json"
+    )
+
+def get_qualifying_results(season, round):
+
+    return make_request(
+        f"{season}/{round}/qualifying.json"
     )

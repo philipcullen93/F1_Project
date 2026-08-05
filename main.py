@@ -4,6 +4,7 @@
 # ==========================
 # Imports
 # ==========================
+import time
 
 from api.jolpica import (
     get_current_drivers,
@@ -11,7 +12,8 @@ from api.jolpica import (
     get_current_circuits,
     get_current_schedule,
     get_driver_standings,
-    get_constructor_standings
+    get_constructor_standings,
+    get_race_results
 )
 from services.driver_service import (
     process_drivers, 
@@ -42,6 +44,9 @@ from services.race_service import (
     process_races,
     load_races
 )
+from services.race_result_service import(
+    process_race_results,
+)
 from models.race import(
     Race
 )
@@ -53,6 +58,9 @@ from services.driver_standing_service import(
 )
 from models.constructor_standing import(
     ConstructorStanding
+)
+from models.race_result import(
+    RaceResult
 )
 from services.constructor_standing_service import(
     process_constructor_standing
@@ -337,6 +345,67 @@ def list_constructor_standings():
         print(standing)
 
 # ==========================
+# Race Result Selection
+# ==========================
+
+def import_race_results():
+
+    print("\nImporting Race Results")
+
+    races = load_json(
+        f"{get_data_folder()}/races.json"
+    )
+
+    all_results = []
+
+    for race in races:
+
+        season = race["season"]
+        round_number = race["round"]
+
+        print(f"Importing Round {round_number}: {race['raceName']}")
+
+        data = get_race_results(
+            season,
+            round_number
+        )
+
+        results = process_race_results(data)
+
+        for result in results:
+            all_results.append(
+                result.to_dict()
+            )
+
+        time.sleep(5)
+
+    save_json(
+        all_results,
+        f"{get_data_folder()}/race_results.json"
+    )
+
+    print(
+        f"{len(all_results)} race results imported successfully"
+    )
+
+def list_race_results():
+
+    print("\nCurrent Race Results")
+    print("-------------------------")
+
+    result_data = load_json(
+        f"{get_data_folder()}/race_results.json"
+    )
+
+    results = [
+        RaceResult.from_dict(data)
+        for data in result_data
+    ]
+
+    for result in results:
+        print(result)
+
+# ==========================
 # Main Menu
 # ==========================
 def display_menu():
@@ -356,6 +425,8 @@ def display_menu():
     print("10. List Driver Standings")
     print("11. Import Constructor Standings")
     print("12. List Constructor Standings")
+    print("13. Import Race Results")
+    print("14. List Race Results")
     print("0. Exit")
 
 # ==========================
@@ -409,6 +480,12 @@ def main():
 
         elif choice == "12":
             list_constructor_standings()
+
+        elif choice == "13":
+            import_race_results()
+
+        elif choice == "14":
+            list_race_results()
 
         elif choice == "0":
             print("\nGoodbye")
