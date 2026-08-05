@@ -14,7 +14,8 @@ from api.jolpica import (
     get_constructor_standings,
     get_race_results,
     get_qualifying_results,
-    get_pit_stops
+    get_pit_stops,
+    get_lap_times
 )
 from services.driver_service import (
     process_drivers, 
@@ -54,6 +55,9 @@ from services.qualifying_result_service import (
 from services.pit_stop_service import (
     process_pit_stops
 )
+from services.lap_time_service import (
+    process_lap_times
+)
 from models.race import(
     Race
 )
@@ -74,6 +78,9 @@ from models.qualifying_result import (
 )
 from models.pit_stop import (
     PitStop
+)
+from models.lap_time import (
+    LapTime
 )
 from services.constructor_standing_service import(
     process_constructor_standing
@@ -520,6 +527,88 @@ def import_pit_stops():
     )
 
 # ==========================
+# Lap Times
+# ==========================
+
+def import_lap_times():
+
+    print("\nImporting Lap Times")
+
+    races = load_json(
+        f"{get_data_folder()}/races.json"
+    )
+
+    race_results = load_json(
+        f"{get_data_folder()}/race_results.json"
+    )
+
+    all_lap_times = []
+
+    for race in races:
+
+        season = race["season"]
+        round = race["round"]
+
+        print(f"Importing Round {round}")
+
+        drivers_in_race = {
+            result["driver_id"]
+            for result in race_results
+            if str(result["season"]) == str(season)
+            and str(result["round"]) == str(round)
+        }
+
+        print(
+            f"Drivers found: {len(drivers_in_race)}"
+        )
+
+        for driver_id in drivers_in_race:
+
+            print(
+                f"Pulling laps for {driver_id}"
+            )
+
+            data = get_lap_times(
+                season,
+                round,
+                driver_id
+            )
+
+            lap_times = process_lap_times(
+                data
+            )
+
+            print(
+                f"{driver_id}: {len(lap_times)} laps found"
+            )
+
+            for lap in lap_times:
+
+                all_lap_times.append(
+                    lap.to_dict()
+                )
+
+            time.sleep(5)
+
+        print(
+            f"Total lap records collected: {len(all_lap_times)}"
+        )
+
+
+    print(
+        f"Records ready to save: {len(all_lap_times)}"
+    )
+
+    save_json(
+        all_lap_times,
+        f"{get_data_folder()}/lap_times.json"
+    )
+
+    print(
+        f"{len(all_lap_times)} lap times imported successfully"
+    )
+
+# ==========================
 # Main Menu
 # ==========================
 def display_menu():
@@ -543,6 +632,7 @@ def display_menu():
     print("14. List Race Results")
     print("15. Import Qualifying Results")
     print("16. Import Pit Stops")
+    print("17. Import Lap Times")
     print("0. Exit")
 
 # ==========================
@@ -608,6 +698,9 @@ def main():
 
         elif choice == "16":
             import_pit_stops()
+
+        elif choice == "17":
+            import_lap_times()
 
         elif choice == "0":
             print("\nGoodbye")

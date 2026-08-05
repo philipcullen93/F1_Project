@@ -3,20 +3,47 @@ import time
 
 BASE_URL = "https://api.jolpi.ca/ergast/f1"
 
+
 def make_request(endpoint):
 
-    url = f"{BASE_URL}/{endpoint}"
+    url = f"{BASE_URL}/{endpoint}?limit=1000"
 
-    response = requests.get(url)
+    while True:
 
-    if response.status_code == 429:
-        print("Rate limit reached. Waiting...")
-        time.sleep(5)
-        response = requests.get(url)
+        try:
 
-    response.raise_for_status()
+            response = requests.get(
+                url,
+                timeout=30
+            )
 
-    return response.json()
+            if response.status_code == 429:
+
+                print(
+                    "Rate limit reached. Waiting 30 seconds..."
+                )
+                time.sleep(30)
+                continue
+
+            response.raise_for_status()
+
+            return response.json()
+
+
+        except requests.exceptions.ConnectionError:
+
+            print(
+                "Connection interrupted. Retrying in 10 seconds..."
+            )
+            time.sleep(10)
+
+
+        except requests.exceptions.Timeout:
+
+            print(
+                "Request timed out. Retrying in 10 seconds..."
+            )
+            time.sleep(10)
 
 def get_current_drivers():
     # Retrieves the current list of drivers from Jolpica API
