@@ -63,3 +63,15 @@ def get_qualifying_results(season, round):
     return make_request(
         f"{season}/{round}/qualifying.json"
     )
+
+def get_pit_stops(season, round):
+
+    return make_request(
+        f"{season}/{round}/pitstops.json"
+    )
+
+def get_lap_times(season, round, driver_id):
+
+    return make_request(
+        f"{season}/{round}/drivers/{driver_id}/laps.json"
+    )

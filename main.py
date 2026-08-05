@@ -1,6 +1,5 @@
 # F1 Data Platform
 
-
 # ==========================
 # Imports
 # ==========================
@@ -14,7 +13,8 @@ from api.jolpica import (
     get_driver_standings,
     get_constructor_standings,
     get_race_results,
-    get_qualifying_results
+    get_qualifying_results,
+    get_pit_stops
 )
 from services.driver_service import (
     process_drivers, 
@@ -51,6 +51,9 @@ from services.race_result_service import(
 from services.qualifying_result_service import (
     process_qualifying_results,
 )
+from services.pit_stop_service import (
+    process_pit_stops
+)
 from models.race import(
     Race
 )
@@ -68,6 +71,9 @@ from models.race_result import(
 )
 from models.qualifying_result import (
     QualifyingResult
+)
+from models.pit_stop import (
+    PitStop
 )
 from services.constructor_standing_service import(
     process_constructor_standing
@@ -451,6 +457,68 @@ def import_qualifying_results():
         all_results,
         f"{get_data_folder()}/qualifying_results.json"
     )
+
+# ==========================
+# Pit Stops
+# ==========================
+
+def import_pit_stops():
+
+    print("\nImporting Pit Stops")
+
+    races = load_json(
+        f"{get_data_folder()}/races.json"
+    )
+
+    all_pit_stops = []
+
+    for race in races:
+
+        season = race["season"]
+        round = race["round"]
+
+        print(f"Importing Round {round}")
+
+        results_data = get_race_results(
+            season,
+            round
+        )
+
+        race_results = process_race_results(
+            results_data
+        )
+
+        constructor_map = {
+            result.driver_id: result.constructor_id
+            for result in race_results
+        }
+
+        data = get_pit_stops(
+            season,
+            round
+        )
+
+        pit_stops = process_pit_stops(
+            data,
+            constructor_map
+        )
+
+        for stop in pit_stops:
+            all_pit_stops.append(
+                stop.to_dict()
+            )
+
+        time.sleep(2)
+
+    save_json(
+        all_pit_stops,
+        f"{get_data_folder()}/pit_stops.json"
+    )
+
+    print(
+        f"{len(all_pit_stops)} pit stops imported successfully"
+    )
+
 # ==========================
 # Main Menu
 # ==========================
@@ -474,6 +542,7 @@ def display_menu():
     print("13. Import Race Results")
     print("14. List Race Results")
     print("15. Import Qualifying Results")
+    print("16. Import Pit Stops")
     print("0. Exit")
 
 # ==========================
@@ -536,6 +605,9 @@ def main():
 
         elif choice == "15":
             import_qualifying_results()
+
+        elif choice == "16":
+            import_pit_stops()
 
         elif choice == "0":
             print("\nGoodbye")
