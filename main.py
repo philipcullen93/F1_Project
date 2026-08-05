@@ -13,7 +13,8 @@ from api.jolpica import (
     get_current_schedule,
     get_driver_standings,
     get_constructor_standings,
-    get_race_results
+    get_race_results,
+    get_qualifying_results
 )
 from services.driver_service import (
     process_drivers, 
@@ -47,6 +48,9 @@ from services.race_service import (
 from services.race_result_service import(
     process_race_results,
 )
+from services.qualifying_result_service import (
+    process_qualifying_results,
+)
 from models.race import(
     Race
 )
@@ -61,6 +65,9 @@ from models.constructor_standing import(
 )
 from models.race_result import(
     RaceResult
+)
+from models.qualifying_result import (
+    QualifyingResult
 )
 from services.constructor_standing_service import(
     process_constructor_standing
@@ -406,6 +413,45 @@ def list_race_results():
         print(result)
 
 # ==========================
+# Qualifying Results
+# ==========================
+
+def import_qualifying_results():
+
+    print("\nImporting Qualifying Results")
+
+    races = load_json(
+        f"{get_data_folder()}/races.json"
+    )
+
+    all_results = []
+
+    for race in races:
+
+        season = race["season"]
+        round_number = race["round"]
+
+        print(f"Importing Round {round_number}")
+
+        data = get_qualifying_results(
+            season,
+            round_number
+        )
+
+        results = process_qualifying_results(data)
+
+        for result in results:
+            all_results.append(
+                result.to_dict()
+            )
+
+        time.sleep(5)
+
+    save_json(
+        all_results,
+        f"{get_data_folder()}/qualifying_results.json"
+    )
+# ==========================
 # Main Menu
 # ==========================
 def display_menu():
@@ -427,6 +473,7 @@ def display_menu():
     print("12. List Constructor Standings")
     print("13. Import Race Results")
     print("14. List Race Results")
+    print("15. Import Qualifying Results")
     print("0. Exit")
 
 # ==========================
@@ -486,6 +533,9 @@ def main():
 
         elif choice == "14":
             list_race_results()
+
+        elif choice == "15":
+            import_qualifying_results()
 
         elif choice == "0":
             print("\nGoodbye")

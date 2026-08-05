@@ -38,7 +38,7 @@ class QualifyingResult:
             "race_name": self.race_name,
             "position": self.position,
             "driver_id": self.driver_id,
-            "constructor_id": constructor_id,
+            "constructor_id": self.constructor_id,
             "q1": self.q1,
             "q2": self.q2,
             "q3": self.q3
